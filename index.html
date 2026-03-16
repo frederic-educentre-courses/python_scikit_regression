@@ -19,8 +19,139 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h2>La régression</h2>
+					<p>La régression est une technique de machine learning utilisée pour prédire une variable continue (ou une valeur) en fonction d'une ou plusieurs variables indépendantes.</p>
+				</section>
+				<section>
+					<h2>Types de régression</h2>
+					<ul>
+						<li>Régression linéaire simple</li>
+						<li>Régression linéaire multiple</li>
+						<li>Régression polynomiale</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Variables dépendantes et indépendantes</h2>
+					<p>Variable dépendante (Y) : la variable que nous voulons prédire.</p>
+					<p>Variable indépendante (X) : la variable utilisée pour faire la prédiction.</p>
+				</section>
+				<section>
+					<h2>Régression linéaire simple</h2>
+					<p>La régression linéaire simple modélise la relation entre une variable indépendante (X) et une variable dépendante (Y) en ajustant une ligne droite aux données.</p>
+					<p>Exemple simple : prédire le prix d'une maison en fonction de sa superficie.</p>
+				</section>
+				<section>
+					<h2>Régression linéaire multiple</h2>
+					<p>La régression linéaire multiple modélise la relation entre plusieurs variables indépendantes (X1, X2, ...) et une variable dépendante (Y) en ajustant un hyperplan aux données.</p>
+					<p>Exemple : prédire le prix d'une maison en fonction de sa superficie, du nombre de pièces et de l'emplacement.</p>
+				</section>
+				<section>
+					<h2>Régression polynomiale</h2>
+					<p>La régression polynomiale modélise la relation entre une variable indépendante (X) et une variable dépendante (Y) en ajustant une courbe polynomiale aux données.</p>
+					<p>Une courbe polynomiale est une fonction mathématique qui peut être utilisée pour modéliser des relations non linéaires entre les variables.</p>
+					<p>En ajustant le degré du polynôme, on peut contrôler la complexité du modèle.</p>
+					<p>Exemple : prédire le prix d'une maison en fonction de sa superficie, en tenant compte de l'effet non linéaire de la superficie sur le prix.</p>
+				</section>
+				<section>
+					<h2>Comment savoir si c'est linéaire ou non linéaire</h2>
+					<p>Pour déterminer si une relation est linéaire ou non linéaire, on peut examiner le nuage de points des données ou utiliser des tests statistiques.</p>
+					<p>Simple : si les points semblent suivre une ligne droite, la relation est linéaire. Sinon, elle est non linéaire.</p>
+				</section>
+				<section>
+					<h2>SciKit-Learn</h2>
+					<p>SciKit-Learn est une bibliothèque Python pour l'apprentissage automatique. Elle fournit des outils pour la préparation des données, la modélisation et l'évaluation des modèles.</p>
+				</section>
+				<section>
+					<h2>Régression linéaire</h2>
+					<pre><code class="python">
+from sklearn.linear_model import LinearRegression
+import numpy as np
+# Données d'exemple
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([2, 3, 5, 7, 11])
+# Création du modèle de régression linéaire
+model = LinearRegression()
+# Entraînement du modèle
+model.fit(X, y)
+# Prédiction pour une nouvelle valeur
+new_value = np.array([[6]])
+predicted_value = model.predict(new_value)
+print(f'La prédiction pour la valeur {new_value[0][0]} est : {predicted_value[0]}')
+					</code></pre>
+					<p>Dans cet exemple, nous avons utilisé la classe LinearRegression de scikit-learn pour créer un modèle de régression linéaire simple. Nous avons entraîné le modèle avec les données d'exemple et effectué une prédiction pour une nouvelle valeur (6). Enfin, nous avons affiché la prédiction dans la console.</p>
+				</section>
+				<section>
+					<h2>Régression linéaire multiple</h2>
+					<pre><code class="python">
+from sklearn.linear_model import LinearRegression
+import numpy as np
+# Données d'exemple
+X = np.array([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]])
+y = np.array([3, 5, 7, 9, 11])
+# Création du modèle de régression linéaire
+model = LinearRegression()
+# Entraînement du modèle
+model.fit(X, y)
+# Prédiction
+y_pred = model.predict([[6, 7]])
+print(f'La prédiction pour les valeurs [6, 7] est : {y_pred[0]}')
+					</code></pre>
+				</section>
+				<section>
+					<h2>Régression polynomiale</h2>
+					<pre><code class="python">
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+import numpy as np
+# Données d'exemple
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([2, 3, 5, 7, 11])
+# Transformation polynomiale des données
+poly = PolynomialFeatures(degree=2)
+X_poly = poly.fit_transform(X)
+# Création du modèle de régression linéaire
+model = LinearRegression()
+# Entraînement du modèle
+model.fit(X_poly, y)
+# Prédiction pour une nouvelle valeur
+new_value = np.array([[6]])
+new_value_poly = poly.transform(new_value)
+predicted_value = model.predict(new_value_poly)
+print(f'La prédiction pour la valeur {new_value[0][0]} est : {predicted_value[0]}')
+					</code></pre>
+					<p>Dans cet exemple, nous avons utilisé la classe PolynomialFeatures de scikit-learn pour transformer les données d'entrée en caractéristiques polynomiales de degré 2. Ensuite, nous avons créé un modèle de régression linéaire et entraîné le modèle avec les données transformées. Enfin, nous avons effectué une prédiction pour une nouvelle valeur (6) et affiché la prédiction dans la console.</p>
+				</section>
+				<section>
+					<h2>Matplotlib</h2>
+					<p>Matplotlib est une bibliothèque Python pour la visualisation de données. Elle permet de créer des graphiques et des tracés pour représenter les résultats des modèles d'apprentissage automatique.</p>
+				</section>
+				<section>
+					<h2>Affichage d'un graphique avec matplotlib</h2>
+					<p>Voici un exemple de régression linéaire simple avec scikit-learn :</p>
+					<pre><code class="python">
+from sklearn.linear_model import LinearRegression
+import numpy as np
+import matplotlib.pyplot as plt
+# Données d'exemple
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([2, 3, 5, 7, 11])
+# Création du modèle de régression linéaire
+model = LinearRegression()
+# Entraînement du modèle
+model.fit(X, y)
+# Prédiction
+y_pred = model.predict(X)
+# Affichage des résultats
+plt.scatter(X, y, color='blue', label='Données réelles')
+plt.plot(X, y_pred, color='red', label='Prédiction')
+plt.xlabel('X')
+plt.ylabel('y')
+plt.title('Régression linéaire simple avec scikit-learn')
+plt.legend()
+plt.show()
+					</code></pre>
+				</section>
 			</div>
 		</div>
 
